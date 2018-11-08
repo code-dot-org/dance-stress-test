@@ -58,6 +58,9 @@ class DancePage:
         # Wait for the page to load again
         self.wait_to_see('runButton')
 
+        # Hide footer (at some resolutions it covers the run button)
+        self.hide_footer()
+
     def bypass_age_dialog(self):
         self.wait_to_see('uitest-age-selector')
         selector = Select(self.driver.find_element_by_id('uitest-age-selector'))
@@ -65,6 +68,11 @@ class DancePage:
         submit = self.driver.find_element_by_id('uitest-submit-age')
         submit.click()
         sleep(3)  # Enough time for reload to start
+
+    def hide_footer(self):
+        self.driver.execute_script("""
+            document.querySelector('#page-small-footer').style.display = 'none';
+        """)
 
     def set_blocks(self, block_xml):
         self.driver.execute_script("""

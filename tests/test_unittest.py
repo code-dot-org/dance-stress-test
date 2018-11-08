@@ -76,6 +76,7 @@ class DanceStressTest(unittest.TestCase):
 
     # Very heavy case hitting all background and foreground effects
     # and all animations for one character
+    @unittest.skip
     def testHeavy(self):
         self.page.run_program(heavy(), 'heavy', run_duration=15)
         self.assertTrue(self.page.is_not_running())
@@ -85,6 +86,7 @@ class DanceStressTest(unittest.TestCase):
     # Loads and plays every animation for every character at once
     # Constantly relayouts sprites
     # To add: Burst moves
+    @unittest.skip
     def testHeaviest(self):
         self.page.run_program(heaviest(), 'heaviest', run_duration=45)
         self.assertTrue(self.page.is_not_running())
