@@ -1,0 +1,163 @@
+<xml>
+ <block type="Dancelab_whenSetup" movable="false">
+  <statement name="DO">
+   <block type="Dancelab_setBackgroundEffect">
+    <title name="EFFECT">"disco"</title>
+    <next>
+     <block type="Dancelab_makeNewDanceSprite">
+      <title name="COSTUME">"ALIEN"</title>
+      <title name="NAME">dancer1</title>
+      <title name="LOCATION">{x: 100, y: 100}</title>
+      <next>
+       <block type="Dancelab_makeNewDanceSprite">
+        <title name="COSTUME">"BEAR"</title>
+        <title name="NAME">dancer2</title>
+        <title name="LOCATION">{x: 300, y: 100}</title>
+        <next>
+         <block type="Dancelab_makeNewDanceSprite">
+          <title name="COSTUME">"CAT"</title>
+          <title name="NAME">dancer3</title>
+          <title name="LOCATION">{x: 100, y: 300}</title>
+          <next>
+           <block type="Dancelab_makeNewDanceSprite">
+            <title name="COSTUME">"DOG"</title>
+            <title name="NAME">dancer4</title>
+            <title name="LOCATION">{x: 300, y: 300}</title>
+            <next>
+             <block type="Dancelab_makeNewDanceSprite">
+              <title name="COSTUME">"DUCK"</title>
+              <title name="NAME">dancer5</title>
+              <title name="LOCATION">{x: 200, y: 100}</title>
+              <next>
+               <block type="Dancelab_makeNewDanceSprite">
+                <title name="COSTUME">"FROG"</title>
+                <title name="NAME">dancer6</title>
+                <title name="LOCATION">{x: 200, y: 100}</title>
+                <next>
+                 <block type="Dancelab_makeNewDanceSprite">
+                  <title name="COSTUME">"MOOSE"</title>
+                  <title name="NAME">dancer7</title>
+                  <title name="LOCATION">{x: 200, y: 100}</title>
+                  <next>
+                   <block type="Dancelab_makeNewDanceSprite">
+                    <title name="COSTUME">"PINEAPPLE"</title>
+                    <title name="NAME">dancer8</title>
+                    <title name="LOCATION">{x: 200, y: 100}</title>
+                    <next>
+                     <block type="Dancelab_makeNewDanceSprite">
+                      <title name="COSTUME">"ROBOT"</title>
+                      <title name="NAME">dancer9</title>
+                      <title name="LOCATION">{x: 200, y: 100}</title>
+                      <next>
+                       <block type="Dancelab_makeNewDanceSprite">
+                        <title name="COSTUME">"SHARK"</title>
+                        <title name="NAME">dancer10</title>
+                        <title name="LOCATION">{x: 200, y: 100}</title>
+                        <next>
+                         <block type="Dancelab_makeNewDanceSprite">
+                          <title name="COSTUME">"UNICORN"</title>
+                          <title name="NAME">dancer11</title>
+                          <title name="LOCATION">{x: 200, y: 100}</title>
+                          <next>
+                           <block type="Dancelab_changeMoveLR">
+                            <title name="SPRITE">dancer1</title>
+                            <title name="MOVE">MOVES.ClapHigh</title>
+                            <title name="DIR">-1</title>
+                            <next>
+                             <block type="Dancelab_changeMoveLR">
+                              <title name="SPRITE">dancer2</title>
+                              <title name="MOVE">MOVES.Clown</title>
+                              <title name="DIR">-1</title>
+                              <next>
+                               <block type="Dancelab_changeMoveLR">
+                                <title name="SPRITE">dancer3</title>
+                                <title name="MOVE">MOVES.Dab</title>
+                                <title name="DIR">-1</title>
+                                <next>
+                                 <block type="Dancelab_changeMoveLR">
+                                  <title name="SPRITE">dancer4</title>
+                                  <title name="MOVE">MOVES.DoubleJam</title>
+                                  <title name="DIR">-1</title>
+                                  <next>
+                                   <block type="Dancelab_changeMoveLR">
+                                    <title name="SPRITE">dancer5</title>
+                                    <title name="MOVE">MOVES.Drop</title>
+                                    <title name="DIR">-1</title>
+                                    <next>
+                                     <block type="Dancelab_changeMoveLR">
+                                      <title name="SPRITE">dancer6</title>
+                                      <title name="MOVE">MOVES.Floss</title>
+                                      <title name="DIR">-1</title>
+                                      <next>
+                                       <block type="Dancelab_changeMoveLR">
+                                        <title name="SPRITE">dancer7</title>
+                                        <title name="MOVE">MOVES.Fresh</title>
+                                        <title name="DIR">-1</title>
+                                        <next>
+                                         <block type="Dancelab_changeMoveLR">
+                                          <title name="SPRITE">dancer8</title>
+                                          <title name="MOVE">MOVES.Roll</title>
+                                          <title name="DIR">-1</title>
+                                          <next>
+                                           <block type="Dancelab_changeMoveLR">
+                                            <title name="SPRITE">dancer9</title>
+                                            <title name="MOVE">MOVES.Kick</title>
+                                            <title name="DIR">-1</title>
+                                            <next>
+                                             <block type="Dancelab_changeMoveLR">
+                                              <title name="SPRITE">dancer10</title>
+                                              <title name="MOVE">MOVES.ThisOrThat</title>
+                                              <title name="DIR">-1</title>
+                                              <next>
+                                               <block type="Dancelab_changeMoveLR">
+                                                <title name="SPRITE">dancer11</title>
+                                                <title name="MOVE">MOVES.Thriller</title>
+                                                <title name="DIR">-1</title>
+                                               </block>
+                                              </next>
+                                             </block>
+                                            </next>
+                                           </block>
+                                          </next>
+                                         </block>
+                                        </next>
+                                       </block>
+                                      </next>
+                                     </block>
+                                    </next>
+                                   </block>
+                                  </next>
+                                 </block>
+                                </next>
+                               </block>
+                              </next>
+                             </block>
+                            </next>
+                           </block>
+                          </next>
+                         </block>
+                        </next>
+                       </block>
+                      </next>
+                     </block>
+                    </next>
+                   </block>
+                  </next>
+                 </block>
+                </next>
+               </block>
+              </next>
+             </block>
+            </next>
+           </block>
+          </next>
+         </block>
+        </next>
+       </block>
+      </next>
+     </block>
+    </next>
+   </block>
+  </statement>
+ </block>
+</xml>

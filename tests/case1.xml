@@ -1,0 +1,65 @@
+<xml>
+ <block type="Dancelab_whenSetup" movable="false">
+  <statement name="DO">
+   <block type="Dancelab_setBackgroundEffect">
+    <title name="EFFECT">"color_cycle"</title>
+    <next>
+     <block type="Dancelab_makeNewDanceSprite">
+      <title name="COSTUME">"ALIEN"</title>
+      <title name="NAME">dancer1</title>
+      <title name="LOCATION">{x: 100, y: 100}</title>
+      <next>
+       <block type="Dancelab_makeNewDanceSprite">
+        <title name="COSTUME">"BEAR"</title>
+        <title name="NAME">dancer2</title>
+        <title name="LOCATION">{x: 300, y: 100}</title>
+        <next>
+         <block type="Dancelab_makeNewDanceSprite">
+          <title name="COSTUME">"CAT"</title>
+          <title name="NAME">dancer3</title>
+          <title name="LOCATION">{x: 100, y: 300}</title>
+          <next>
+           <block type="Dancelab_makeNewDanceSprite">
+            <title name="COSTUME">"DOG"</title>
+            <title name="NAME">dancer4</title>
+            <title name="LOCATION">{x: 300, y: 300}</title>
+            <next>
+             <block type="Dancelab_changeMoveLR">
+              <title name="SPRITE">dancer1</title>
+              <title name="MOVE">MOVES.ClapHigh</title>
+              <title name="DIR">-1</title>
+              <next>
+               <block type="Dancelab_changeMoveLR">
+                <title name="SPRITE">dancer2</title>
+                <title name="MOVE">MOVES.Clown</title>
+                <title name="DIR">-1</title>
+                <next>
+                 <block type="Dancelab_changeMoveLR">
+                  <title name="SPRITE">dancer3</title>
+                  <title name="MOVE">MOVES.Dab</title>
+                  <title name="DIR">-1</title>
+                  <next>
+                   <block type="Dancelab_changeMoveLR">
+                    <title name="SPRITE">dancer4</title>
+                    <title name="MOVE">MOVES.DoubleJam</title>
+                    <title name="DIR">-1</title>
+                   </block>
+                  </next>
+                 </block>
+                </next>
+               </block>
+              </next>
+             </block>
+            </next>
+           </block>
+          </next>
+         </block>
+        </next>
+       </block>
+      </next>
+     </block>
+    </next>
+   </block>
+  </statement>
+ </block>
+</xml>

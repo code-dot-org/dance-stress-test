@@ -1,0 +1,48 @@
+<xml>
+ <block type="Dancelab_whenSetup" movable="false">
+  <statement name="DO">
+   <block type="Dancelab_setBackgroundEffect">
+    <title name="EFFECT">"splatter"</title>
+    <next>
+     <block type="Dancelab_makeNewDanceSpriteGroup">
+      <title name="N">20</title>
+      <title name="COSTUME">"ALIEN"</title>
+      <title name="LAYOUT">"grid"</title>
+      <next>
+       <block type="Dancelab_makeNewDanceSpriteGroup">
+        <title name="N">10</title>
+        <title name="COSTUME">"BEAR"</title>
+        <title name="LAYOUT">"circle"</title>
+        <next>
+         <block type="Dancelab_changeMoveEachLR">
+          <title name="GROUP">"ALIEN"</title>
+          <title name="MOVE">MOVES.ThisOrThat</title>
+          <title name="DIR">-1</title>
+          <next>
+           <block type="Dancelab_changeMoveEachLR">
+            <title name="GROUP">"BEAR"</title>
+            <title name="MOVE">MOVES.Drop</title>
+            <title name="DIR">-1</title>
+           </block>
+          </next>
+         </block>
+        </next>
+       </block>
+      </next>
+     </block>
+    </next>
+   </block>
+  </statement>
+ </block>
+ <block type="Dancelab_everySeconds">
+  <title name="N">2</title>
+  <title name="UNIT">"seconds"</title>
+  <statement name="DO">
+   <block type="Dancelab_changeMoveEachLR">
+    <title name="GROUP">sprites</title>
+    <title name="MOVE">"next"</title>
+    <title name="DIR">-1</title>
+   </block>
+  </statement>
+ </block>
+</xml>

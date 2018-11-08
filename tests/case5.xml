@@ -1,0 +1,75 @@
+<xml>
+ <block type="Dancelab_whenSetup" movable="false">
+  <statement name="DO">
+   <block type="Dancelab_setBackgroundEffect">
+    <title name="EFFECT">"splatter"</title>
+    <next>
+     <block type="Dancelab_makeNewDanceSpriteGroup">
+      <title name="N">20</title>
+      <title name="COSTUME">"ALIEN"</title>
+      <title name="LAYOUT">"grid"</title>
+      <next>
+       <block type="Dancelab_makeNewDanceSpriteGroup">
+        <title name="N">16</title>
+        <title name="COSTUME">"ALIEN"</title>
+        <title name="LAYOUT">"circle"</title>
+        <next>
+         <block type="Dancelab_layoutSprites">
+          <title name="GROUP">"ALIEN"</title>
+          <title name="FORMAT">"grid"</title>
+          <next>
+           <block type="Dancelab_makeNewDanceSpriteGroup">
+            <title name="N">12</title>
+            <title name="COSTUME">"BEAR"</title>
+            <title name="LAYOUT">"plus"</title>
+            <next>
+             <block type="Dancelab_makeNewDanceSpriteGroup">
+              <title name="N">12</title>
+              <title name="COSTUME">"CAT"</title>
+              <title name="LAYOUT">"x"</title>
+              <next>
+               <block type="Dancelab_changeMoveEachLR">
+                <title name="GROUP">"ALIEN"</title>
+                <title name="MOVE">MOVES.ClapHigh</title>
+                <title name="DIR">-1</title>
+                <next>
+                 <block type="Dancelab_changeMoveEachLR">
+                  <title name="GROUP">"BEAR"</title>
+                  <title name="MOVE">MOVES.Clown</title>
+                  <title name="DIR">-1</title>
+                  <next>
+                   <block type="Dancelab_changeMoveEachLR">
+                    <title name="GROUP">"CAT"</title>
+                    <title name="MOVE">MOVES.Dab</title>
+                    <title name="DIR">-1</title>
+                   </block>
+                  </next>
+                 </block>
+                </next>
+               </block>
+              </next>
+             </block>
+            </next>
+           </block>
+          </next>
+         </block>
+        </next>
+       </block>
+      </next>
+     </block>
+    </next>
+   </block>
+  </statement>
+ </block>
+ <block type="Dancelab_everySeconds">
+  <title name="N">2</title>
+  <title name="UNIT">"seconds"</title>
+  <statement name="DO">
+   <block type="Dancelab_changeMoveEachLR">
+    <title name="GROUP">sprites</title>
+    <title name="MOVE">"next"</title>
+    <title name="DIR">-1</title>
+   </block>
+  </statement>
+ </block>
+</xml>
