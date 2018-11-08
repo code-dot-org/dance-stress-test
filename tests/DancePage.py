@@ -35,7 +35,11 @@ class DancePage:
         block_xml = load_xml(xml_filename)
         self.run_program(block_xml, xml_filename, run_duration, repeat_runs)
 
-    def run_program(self, block_xml, screenshot_name, run_duration=15, repeat_runs=1):
+    def run_program(self, block_xml, program_name, run_duration=15, repeat_runs=1):
+        print('-- Running {program_name} for {run_duration} seconds {repeat_runs} times --'.format(
+            program_name=program_name, run_duration=run_duration, repeat_runs=repeat_runs
+        ))
+
         self.load_free_play()
         self.set_blocks(block_xml)
 
@@ -43,8 +47,9 @@ class DancePage:
         for i in range(repeat_runs):
             self.click_run()
             sleep(run_duration)
+            self.capture_framerate(program_name, run_number=i)
             if i == repeat_runs - 1:
-                self.screenshot(screenshot_name)
+                self.screenshot(program_name)
             self.click_reset()
             sleep(0.5)
 
@@ -110,6 +115,15 @@ class DancePage:
 
     def screenshot(self, name):
         self.driver.save_screenshot(self.screenshot_folder + '/' + name + '.png')
+
+    def capture_framerate(self, program_name, run_number):
+        framerate = self.driver.execute_script("""
+            return __TestInterface.frameRate && __TestInterface.frameRate();
+        """) or 'unknown'
+        print('{program_name} | {run_number} | framerate | {framerate}'.format(
+            program_name=program_name, run_number=run_number, framerate=framerate
+        ))
+
 
 #
 # Static helpers
