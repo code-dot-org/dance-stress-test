@@ -1,3 +1,4 @@
+import json
 import os
 from appium import webdriver
 from selenium.common.exceptions import NoSuchElementException
@@ -47,7 +48,7 @@ class DancePage:
         for i in range(repeat_runs):
             self.click_run()
             sleep(run_duration)
-            self.capture_framerate(program_name, run_number=i)
+            self.capture_timing_data(program_name, run_number=i)
             if i == repeat_runs - 1:
                 self.screenshot(program_name)
             self.click_reset()
@@ -116,13 +117,18 @@ class DancePage:
     def screenshot(self, name):
         self.driver.save_screenshot(self.screenshot_folder + '/' + name + '.png')
 
-    def capture_framerate(self, program_name, run_number):
-        framerate = self.driver.execute_script("""
-            return __TestInterface.frameRate && __TestInterface.frameRate();
-        """) or 'unknown'
-        print('{program_name} | {run_number} | framerate | {framerate}'.format(
-            program_name=program_name, run_number=run_number, framerate=framerate
-        ))
+    def capture_timing_data(self, program_name, run_number):
+        data_json = self.driver.execute_script("""
+            return __TestInterface.getPerformanceData && JSON.stringify(__TestInterface.getPerformanceData());
+        """)
+        if data_json:
+            data = json.loads(data_json)
+            for datum in ['initTime', 'lastPlayDelay', 'frameRateMean', 'frameRateMin', 'frameRateMax']:
+                print('{program_name} | {run_number} | {datum_name} | {datum_value}'.format(
+                    program_name=program_name, run_number=run_number, datum_name=datum, datum_value=data[datum]
+                ))
+        else:
+            print('Unable to load timing metrics')
 
 
 #
