@@ -118,12 +118,20 @@ class DancePage:
         self.driver.save_screenshot(self.screenshot_folder + '/' + name + '.png')
 
     def capture_timing_data(self, program_name, run_number):
+        data_labels = [
+            'timeToInteractive',
+            'timeToPlayable',
+            'lastRunButtonDelay',
+            'frameRateMean',
+            'frameRateMin',
+            'frameRateMax'
+        ]
         data_json = self.driver.execute_script("""
             return __TestInterface.getPerformanceData && JSON.stringify(__TestInterface.getPerformanceData());
         """)
         if data_json:
             data = json.loads(data_json)
-            for datum in ['initTime', 'lastPlayDelay', 'frameRateMean', 'frameRateMin', 'frameRateMax']:
+            for datum in data_labels:
                 print('{program_name} | {run_number} | {datum_name} | {datum_value}'.format(
                     program_name=program_name, run_number=run_number, datum_name=datum, datum_value=data[datum]
                 ))
