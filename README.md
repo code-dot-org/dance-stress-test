@@ -69,7 +69,7 @@ _Based on [this setup guide](https://github.com/aws-samples/aws-device-farm-samp
     # 2.0M	test_bundle.zip
     ```
     
-2. Use the AWS Device Farm console to start a new run
+2. Sign into AWS Console and open our AWS Device Farm project [here](https://us-west-2.console.aws.amazon.com/devicefarm/home?region=us-east-1#/projects/f720d748-5279-410f-8144-a6c7be46fd63/runs).
 
    At "Choose your application" pick "Test a web application."  The run name is just a label.
    
