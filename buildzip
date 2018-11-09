@@ -15,6 +15,12 @@ find . -name '*.pyc' -exec rm -f {} +
 find . -name '*.pyo' -exec rm -f {} +
 find . -name '*~' -exec rm -f {} +
 
-# Zip files
+# Zip files up for AWS Device Farm
+# We use the checked-in aws_wheelhouse so OSX users can run
+# this locally.
+mv wheelhouse tmp_wheelhouse
+mv aws_wheelhouse wheelhouse
 zip -r test_bundle.zip tests/ wheelhouse/ requirements.txt
+mv wheelhouse aws_wheelhouse
+mv tmp_wheelhouse wheelhouse
 du -h test_bundle.zip
