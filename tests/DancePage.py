@@ -128,7 +128,9 @@ class DancePage:
             'frameRateMax'
         ]
         data_json = self.driver.execute_script("""
-            return __TestInterface.getPerformanceData && JSON.stringify(__TestInterface.getPerformanceData());
+            return __DanceTestInterface &&
+              __DanceTestInterface.getPerformanceData &&
+              JSON.stringify(__DanceTestInterface.getPerformanceData());
         """)
         if data_json:
             data = json.loads(data_json)
