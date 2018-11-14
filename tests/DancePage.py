@@ -135,7 +135,7 @@ class DancePage:
         if data_json:
             data = json.loads(data_json)
             for datum in data_labels:
-                print('{timestamp} | {program_name} | {run_number} | {datum_name} | {datum_value}'.format(
+                print('{timestamp},,{program_name},{run_number},{datum_name},{datum_value}'.format(
                     timestamp=datetime.now().isoformat(),
                     program_name=program_name,
                     run_number=run_number,
