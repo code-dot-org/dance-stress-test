@@ -74,6 +74,13 @@ class DanceStressTest(unittest.TestCase):
         self.page.run_fixture('case7.xml', repeat_runs=4)
         self.assertTrue(self.page.is_not_running())
 
+    # JoshC reported this dance crashes his phone browser about 6 beats in
+    # https://studio.code.org/projects/dance/-9BgFCKwWnZfmNfYbu6XFHIT7cOfRBZPhWz2p3w4k1E
+    # iPhone 6 / iOS 12.1
+    def testStealthCat(self):
+        self.page.run_fixture('stealthCat.xml', run_duration=30)
+        self.assertTrue(self.page.is_not_running())
+
     # Very heavy case hitting all background and foreground effects
     # and all animations for one character
     @unittest.skip

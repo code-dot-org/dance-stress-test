@@ -1,0 +1,372 @@
+<xml>
+ <block type="Dancelab_whenSetup" deletable="false" movable="false" editable="false">
+  <statement name="DO">
+   <block type="Dancelab_setBackgroundEffect" deletable="false" movable="false" editable="false">
+    <title name="EFFECT">"none"</title>
+    <next>
+     <block type="Dancelab_setForegroundEffect" deletable="false" movable="false" editable="false">
+      <title name="EFFECT">"rain"</title>
+      <next>
+       <block type="Dancelab_setBackground" deletable="false" movable="false" editable="false">
+        <value name="COLOR">
+         <block type="colour_picker" deletable="false" movable="false" editable="false">
+          <title name="COLOUR">#000000</title>
+         </block>
+        </value>
+        <next>
+         <block type="Dancelab_makeNewDanceSprite" deletable="false" movable="false" editable="false">
+          <title name="COSTUME">"CAT"</title>
+          <title name="NAME">LeadDancer</title>
+          <title name="LOCATION">{x: 200, y: 200}</title>
+          <next>
+           <block type="Dancelab_setTint" deletable="false" movable="false" editable="false">
+            <title name="SPRITE">LeadDancer</title>
+            <value name="VAL">
+             <block type="colour_picker" deletable="false" movable="false" editable="false">
+              <title name="COLOUR">#ff6666</title>
+             </block>
+            </value>
+            <next>
+             <block type="Dancelab_startMapping" deletable="false" movable="false" editable="false">
+              <title name="SPRITE">LeadDancer</title>
+              <title name="PROPERTY">"x"</title>
+              <title name="RANGE">"treble"</title>
+              <next>
+               <block type="Dancelab_setProp" deletable="false" movable="false" editable="false">
+                <title name="SPRITE">LeadDancer</title>
+                <title name="PROPERTY">"scale"</title>
+                <title name="VAL">27</title>
+                <next>
+                 <block type="Dancelab_setForegroundEffect" deletable="false" movable="false" editable="false">
+                  <title name="EFFECT">"rain"</title>
+                 </block>
+                </next>
+               </block>
+              </next>
+             </block>
+            </next>
+           </block>
+          </next>
+         </block>
+        </next>
+       </block>
+      </next>
+     </block>
+    </next>
+   </block>
+  </statement>
+ </block>
+ <block type="Dancelab_whenKey" deletable="false" movable="false" editable="false">
+  <title name="KEY">"up"</title>
+  <next>
+   <block type="Dancelab_setTint" deletable="false" movable="false" editable="false">
+    <title name="SPRITE">LeadDancer</title>
+    <value name="VAL">
+     <block type="Dancelab_randomColor" deletable="false" movable="false" editable="false"></block>
+    </value>
+   </block>
+  </next>
+ </block>
+ <block type="Dancelab_whenKey" deletable="false" movable="false" editable="false">
+  <title name="KEY">"down"</title>
+  <next>
+   <block type="Dancelab_setBackground" deletable="false" movable="false" editable="false">
+    <value name="COLOR">
+     <block type="Dancelab_randomColor" deletable="false" movable="false" editable="false"></block>
+    </value>
+   </block>
+  </next>
+ </block>
+ <block type="Dancelab_whenPeak" deletable="false" movable="false" editable="false">
+  <title name="RANGE">2</title>
+  <next>
+   <block type="Dancelab_setBackground" deletable="false" movable="false" editable="false">
+    <value name="COLOR">
+     <block type="colour_picker" deletable="false" movable="false" editable="false">
+      <title name="COLOUR">#ffffff</title>
+     </block>
+    </value>
+   </block>
+  </next>
+ </block>
+ <block type="Dancelab_atTimestamp" deletable="false" movable="false" editable="false">
+  <title name="TIMESTAMP">0</title>
+  <title name="UNIT">"measures"</title>
+  <next>
+   <block type="Dancelab_setDanceSpeed" deletable="false" movable="false" editable="false">
+    <title name="SPRITE">LeadDancer</title>
+    <title name="SPEED">0.25</title>
+   </block>
+  </next>
+ </block>
+ <block type="Dancelab_whenPeak" deletable="false" movable="false" editable="false">
+  <title name="RANGE">0</title>
+  <next>
+   <block type="Dancelab_setBackground" deletable="false" movable="false" editable="false">
+    <value name="COLOR">
+     <block type="colour_picker" deletable="false" movable="false" editable="false">
+      <title name="COLOUR">#000000</title>
+     </block>
+    </value>
+   </block>
+  </next>
+ </block>
+ <block type="Dancelab_atTimestamp" deletable="false" movable="false" editable="false">
+  <title name="TIMESTAMP">16</title>
+  <title name="UNIT">"measures"</title>
+  <next>
+   <block type="Dancelab_setDanceSpeed" deletable="false" movable="false" editable="false">
+    <title name="SPRITE">LeadDancer</title>
+    <title name="SPEED">0.5</title>
+   </block>
+  </next>
+ </block>
+ <block type="Dancelab_everySeconds" deletable="false" movable="false" editable="false">
+  <title name="N">2</title>
+  <title name="UNIT">"measures"</title>
+  <statement name="DO">
+   <block type="controls_if" deletable="false" movable="false" editable="false">
+    <value name="IF0">
+     <block type="logic_compare" deletable="false" movable="false" editable="false">
+      <title name="OP">GTE</title>
+      <value name="A">
+       <block type="math_arithmetic" deletable="false" movable="false" editable="false">
+        <title name="OP">DIVIDE</title>
+        <value name="A">
+         <block type="Dancelab_getTime" deletable="false" movable="false" editable="false">
+          <title name="UNIT">"measures"</title>
+         </block>
+        </value>
+        <value name="B">
+         <block type="math_number" deletable="false" movable="false" editable="false">
+          <title name="NUM">8</title>
+         </block>
+        </value>
+       </block>
+      </value>
+      <value name="B">
+       <block type="math_number" deletable="false" movable="false" editable="false">
+        <title name="NUM">0</title>
+       </block>
+      </value>
+     </block>
+    </value>
+    <statement name="DO0">
+     <block type="Dancelab_setBackground" deletable="false" movable="false" editable="false">
+      <value name="COLOR">
+       <block type="Dancelab_changeColorBy" deletable="false" movable="false" editable="false">
+        <title name="METHOD">"brightness"</title>
+        <value name="COLOR">
+         <block type="colour_picker" deletable="false" movable="false" editable="false">
+          <title name="COLOUR">#000000</title>
+         </block>
+        </value>
+        <value name="AMOUNT">
+         <block type="math_arithmetic" deletable="false" movable="false" editable="false">
+          <title name="OP">MULTIPLY</title>
+          <value name="A">
+           <block type="Dancelab_getTime" deletable="false" movable="false" editable="false">
+            <title name="UNIT">"measures"</title>
+           </block>
+          </value>
+          <value name="B">
+           <block type="math_number" deletable="false" movable="false" editable="false">
+            <title name="NUM">2</title>
+           </block>
+          </value>
+         </block>
+        </value>
+       </block>
+      </value>
+     </block>
+    </statement>
+    <next>
+     <block type="Dancelab_layoutSprites" deletable="false" movable="false" editable="false">
+      <title name="GROUP">"DOG"</title>
+      <title name="FORMAT">"random"</title>
+      <next>
+       <block type="Dancelab_changeMoveLR" deletable="false" movable="false" editable="false">
+        <title name="SPRITE">dancer1</title>
+        <title name="MOVE">"rand"</title>
+        <title name="DIR">-1</title>
+       </block>
+      </next>
+     </block>
+    </next>
+   </block>
+  </statement>
+ </block>
+ <block type="Dancelab_atTimestamp" deletable="false" movable="false" editable="false">
+  <title name="TIMESTAMP">28</title>
+  <title name="UNIT">"measures"</title>
+  <next>
+   <block type="Dancelab_setForegroundEffect" deletable="false" movable="false" editable="false">
+    <title name="EFFECT">"none"</title>
+    <next>
+     <block type="Dancelab_changePropBy" deletable="false" movable="false" editable="false">
+      <title name="SPRITE">LeadDancer</title>
+      <title name="PROPERTY">"scale"</title>
+      <title name="VAL">27</title>
+     </block>
+    </next>
+   </block>
+  </next>
+ </block>
+ <block type="Dancelab_atTimestamp" deletable="false" movable="false" editable="false">
+  <title name="TIMESTAMP">40</title>
+  <title name="UNIT">"measures"</title>
+  <next>
+   <block type="Dancelab_setTint" deletable="false" movable="false" editable="false">
+    <title name="SPRITE">LeadDancer</title>
+    <value name="VAL">
+     <block type="colour_picker" deletable="false" movable="false" editable="false">
+      <title name="COLOUR">#ffff33</title>
+     </block>
+    </value>
+   </block>
+  </next>
+ </block>
+ <block type="Dancelab_everySeconds" deletable="false" movable="false" editable="false">
+  <title name="N">3</title>
+  <title name="UNIT">"measures"</title>
+  <statement name="DO">
+   <block type="Dancelab_changeMoveLR" deletable="false" movable="false" editable="false">
+    <title name="SPRITE">LeadDancer</title>
+    <title name="MOVE">"rand"</title>
+    <title name="DIR">1</title>
+   </block>
+  </statement>
+ </block>
+ <block type="Dancelab_atTimestamp" deletable="false" movable="false" editable="false">
+  <title name="TIMESTAMP">42</title>
+  <title name="UNIT">"measures"</title>
+  <next>
+   <block type="Dancelab_setTint" deletable="false" movable="false" editable="false">
+    <title name="SPRITE">LeadDancer</title>
+    <value name="VAL">
+     <block type="colour_picker" deletable="false" movable="false" editable="false">
+      <title name="COLOUR">#33cc00</title>
+     </block>
+    </value>
+   </block>
+  </next>
+ </block>
+ <block type="Dancelab_atTimestamp" deletable="false" movable="false" editable="false">
+  <title name="TIMESTAMP">44</title>
+  <title name="UNIT">"measures"</title>
+  <next>
+   <block type="Dancelab_setTint" deletable="false" movable="false" editable="false">
+    <title name="SPRITE">LeadDancer</title>
+    <value name="VAL">
+     <block type="colour_picker" deletable="false" movable="false" editable="false">
+      <title name="COLOUR">#6666cc</title>
+     </block>
+    </value>
+   </block>
+  </next>
+ </block>
+ <block type="Dancelab_everySeconds" deletable="false" movable="false" editable="false">
+  <title name="N">20</title>
+  <title name="UNIT">"measures"</title>
+  <statement name="DO">
+   <block type="Dancelab_setBackground" deletable="false" movable="false" editable="false">
+    <value name="COLOR">
+     <block type="Dancelab_changeColorBy" deletable="false" movable="false" editable="false">
+      <title name="METHOD">"hue"</title>
+      <value name="COLOR">
+       <block type="colour_picker" deletable="false" movable="false" editable="false">
+        <title name="COLOUR">#ff0000</title>
+       </block>
+      </value>
+      <value name="AMOUNT">
+       <block type="Dancelab_getTime" deletable="false" movable="false" editable="false">
+        <title name="UNIT">"measures"</title>
+       </block>
+      </value>
+     </block>
+    </value>
+    <next>
+     <block type="Dancelab_setBackground" deletable="false" movable="false" editable="false">
+      <value name="COLOR">
+       <block type="Dancelab_changeColorBy" deletable="false" movable="false" editable="false">
+        <title name="METHOD">"saturation"</title>
+        <value name="COLOR">
+         <block type="colour_picker" deletable="false" movable="false" editable="false">
+          <title name="COLOUR">#ffff00</title>
+         </block>
+        </value>
+        <value name="AMOUNT">
+         <block type="Dancelab_getTime" deletable="false" movable="false" editable="false">
+          <title name="UNIT">"measures"</title>
+         </block>
+        </value>
+       </block>
+      </value>
+      <next>
+       <block type="Dancelab_changePropBy" deletable="false" movable="false" editable="false">
+        <title name="SPRITE">LeadDancer</title>
+        <title name="PROPERTY">"scale"</title>
+        <title name="VAL">18</title>
+       </block>
+      </next>
+     </block>
+    </next>
+   </block>
+  </statement>
+ </block>
+ <block type="Dancelab_atTimestamp" deletable="false" movable="false" editable="false">
+  <title name="TIMESTAMP">46</title>
+  <title name="UNIT">"measures"</title>
+  <next>
+   <block type="Dancelab_setTint" deletable="false" movable="false" editable="false">
+    <title name="SPRITE">LeadDancer</title>
+    <value name="VAL">
+     <block type="colour_picker" deletable="false" movable="false" editable="false">
+      <title name="COLOUR">#ff0000</title>
+     </block>
+    </value>
+   </block>
+  </next>
+ </block>
+ <block type="Dancelab_everySeconds" deletable="false" movable="false" editable="false">
+  <title name="N">36</title>
+  <title name="UNIT">"measures"</title>
+  <statement name="DO">
+   <block type="Dancelab_setForegroundEffect" deletable="false" movable="false" editable="false">
+    <title name="EFFECT">"none"</title>
+    <next>
+     <block type="Dancelab_startMapping" deletable="false" movable="false" editable="false">
+      <title name="SPRITE">LeadDancer</title>
+      <title name="PROPERTY">"scale"</title>
+      <title name="RANGE">"treble"</title>
+      <next>
+       <block type="Dancelab_changeMoveLR" deletable="false" movable="false" editable="false">
+        <title name="SPRITE">LeadDancer</title>
+        <title name="MOVE">MOVES.Clown</title>
+        <title name="DIR">-1</title>
+        <next>
+         <block type="Dancelab_setDanceSpeed" deletable="false" movable="false" editable="false">
+          <title name="SPRITE">LeadDancer</title>
+          <title name="SPEED">1</title>
+          <next>
+           <block type="Dancelab_setBackgroundEffect" deletable="false" movable="false" editable="false">
+            <title name="EFFECT">"diamonds"</title>
+            <next>
+             <block type="Dancelab_startMapping" deletable="false" movable="false" editable="false">
+              <title name="SPRITE">LeadDancer</title>
+              <title name="PROPERTY">"y"</title>
+              <title name="RANGE">"mid"</title>
+             </block>
+            </next>
+           </block>
+          </next>
+         </block>
+        </next>
+       </block>
+      </next>
+     </block>
+    </next>
+   </block>
+  </statement>
+ </block>
+</xml>
