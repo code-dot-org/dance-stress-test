@@ -57,7 +57,7 @@ class DancePage:
 
     def load_free_play(self):
         # Load dance party free-play level
-        self.driver.get('{origin}s/dance/stage/1/puzzle/13'.format(origin=self.origin))
+        self.driver.get('{origin}s/dance/stage/1/puzzle/13?noautoplay=true'.format(origin=self.origin))
 
         # Enter age and dismiss dialog, which causes a page reload
         self.bypass_age_dialog()
