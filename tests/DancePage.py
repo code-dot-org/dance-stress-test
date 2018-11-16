@@ -13,11 +13,13 @@ class DancePage:
         self.origin = origin
         self.driver = None
         self.screenshot_folder = None
+        self.artifact_folder = None
 
     def setup(self):
         self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', {})
         self.driver.orientation = "LANDSCAPE"
         self.screenshot_folder = os.getenv('SCREENSHOT_PATH', '/tmp')
+        self.artifact_folder = os.getenv('DEVICEFARM_LOG_DIR')
 
         # TODO: Figure out local testing
         # desired_caps = {
@@ -133,15 +135,16 @@ class DancePage:
               JSON.stringify(__DanceTestInterface.getPerformanceData());
         """)
         if data_json:
-            data = json.loads(data_json)
-            for datum in data_labels:
-                print('{timestamp},,{program_name},{run_number},{datum_name},{datum_value}'.format(
-                    timestamp=datetime.now().isoformat(),
-                    program_name=program_name,
-                    run_number=run_number,
-                    datum_name=datum,
-                    datum_value=data[datum]
-                ))
+            with open(os.path.join(self.artifact_folder, 'timing.csv'), 'a') as f:
+                data = json.loads(data_json)
+                for datum in data_labels:
+                    f.write('{timestamp},,{program_name},{run_number},{datum_name},{datum_value}\n'.format(
+                        timestamp=datetime.now().isoformat(),
+                        program_name=program_name,
+                        run_number=run_number,
+                        datum_name=datum,
+                        datum_value=data[datum]
+                    ))
         else:
             print('Unable to load timing metrics')
 
