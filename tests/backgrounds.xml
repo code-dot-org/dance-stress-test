@@ -1,0 +1,57 @@
+<xml>
+ <block type="Dancelab_whenSetup" movable="false">
+  <statement name="DO">
+   <block type="Dancelab_makeNewDanceSprite">
+    <title name="COSTUME">"CAT"</title>
+    <title name="NAME">dancer1</title>
+    <title name="LOCATION">{x: 200, y: 200}</title>
+   </block>
+  </statement>
+ </block>
+ <block type="Dancelab_everySeconds">
+  <title name="N">0.5</title>
+  <title name="UNIT">"measures"</title>
+  <statement name="DO">
+   <block type="Dancelab_ifDanceIs">
+    <title name="SPRITE">dancer1</title>
+    <title name="DANCE">MOVES.Roll</title>
+    <statement name="DO1">
+     <block type="Dancelab_changeMoveLR">
+      <title name="SPRITE">dancer1</title>
+      <title name="MOVE">MOVES.Rest</title>
+      <title name="DIR">-1</title>
+      <next>
+       <block type="Dancelab_setBackgroundEffect">
+        <title name="EFFECT">"none"</title>
+        <next>
+         <block type="Dancelab_setForegroundEffect">
+          <title name="EFFECT">"none"</title>
+         </block>
+        </next>
+       </block>
+      </next>
+     </block>
+    </statement>
+    <statement name="DO2">
+     <block type="Dancelab_changeMoveLR">
+      <title name="SPRITE">dancer1</title>
+      <title name="MOVE">MOVES.Roll</title>
+      <title name="DIR">-1</title>
+      <next>
+       <block type="Dancelab_setBackgroundEffect">
+        <title name="EFFECT">['disco', 'color_cycle', 'rainbow',
+         'diamonds','snowflakes','splatter','swirl','spiral'][randomInt(0,7)]
+        </title>
+        <next>
+         <block type="Dancelab_setForegroundEffect">
+          <title name="EFFECT">['spotlight', 'rain', 'raining_tacos'][randomInt(0,2)]</title>
+         </block>
+        </next>
+       </block>
+      </next>
+     </block>
+    </statement>
+   </block>
+  </statement>
+ </block>
+</xml>

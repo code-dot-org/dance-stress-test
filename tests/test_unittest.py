@@ -81,6 +81,12 @@ class DanceStressTest(unittest.TestCase):
         self.page.run_fixture('stealthCat.xml', run_duration=30)
         self.assertTrue(self.page.is_not_running())
 
+    # Test cycling through many backgrounds and foregrounds to see if they
+    # have memory leaks
+    def testBackgrouds(self):
+        self.page.run_fixture('backgrounds.xml', run_duration=60)
+        self.assertTrue(self.page.is_not_running())
+
     # Very heavy case hitting all background and foreground effects
     # and all animations for one character
     @unittest.skip
