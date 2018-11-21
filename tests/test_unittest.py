@@ -8,6 +8,7 @@ class DanceStressTest(unittest.TestCase):
     def setUp(self):
         self.page = DancePage()
         self.page.setup()
+        self.background_test_runs = 4
         self.background_test_duration = 15
 
     def tearDown(self):
@@ -93,49 +94,121 @@ class DanceStressTest(unittest.TestCase):
     # causing them.
 
     def testBackgroundColorCycle(self):
-        block_xml = set_background('color_cycle')
-        print block_xml
-        self.page.run_program(block_xml, 'color_cycle', run_duration=self.background_test_duration)
+        self.page.run_program(set_background('color_cycle'), 'color_cycle', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
+        self.assertTrue(self.page.is_not_running())
+
+    def testBackgroundColorLights(self):
+        self.page.run_program(set_background('color_lights'), 'color_lights', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
         self.assertTrue(self.page.is_not_running())
 
     def testBackgroundDisco(self):
-        self.page.run_program(set_background('disco'), 'disco', run_duration=self.background_test_duration)
+        self.page.run_program(set_background('disco'), 'disco', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
+        self.assertTrue(self.page.is_not_running())
+
+    def testBackgroundKaleidoscope(self):
+        self.page.run_program(set_background('kaleidoscope'), 'kaleidoscope', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
         self.assertTrue(self.page.is_not_running())
 
     def testBackgroundRainbow(self):
-        self.page.run_program(set_background('rainbow'), 'rainbow', run_duration=self.background_test_duration)
+        self.page.run_program(set_background('rainbow'), 'rainbow', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
         self.assertTrue(self.page.is_not_running())
 
     def testBackgroundDiamonds(self):
-        self.page.run_program(set_background('diamonds'), 'diamonds', run_duration=self.background_test_duration)
+        self.page.run_program(set_background('diamonds'), 'diamonds', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
+        self.assertTrue(self.page.is_not_running())
+
+    def testBackgroundSparkles(self):
+        self.page.run_program(set_background('sparkles'), 'sparkles', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
         self.assertTrue(self.page.is_not_running())
 
     def testBackgroundSplatter(self):
-        self.page.run_program(set_background('splatter'), 'splatter', run_duration=self.background_test_duration)
+        self.page.run_program(set_background('splatter'), 'splatter', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
         self.assertTrue(self.page.is_not_running())
 
     def testBackgroundSwirl(self):
-        self.page.run_program(set_background('swirl'), 'swirl', run_duration=self.background_test_duration)
+        self.page.run_program(set_background('swirl'), 'swirl', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
         self.assertTrue(self.page.is_not_running())
 
     def testBackgroundSnowflakes(self):
-        self.page.run_program(set_background('snowflakes'), 'snowflakes', run_duration=self.background_test_duration)
+        self.page.run_program(set_background('snowflakes'), 'snowflakes', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
         self.assertTrue(self.page.is_not_running())
 
     def testBackgroundSpiral(self):
-        self.page.run_program(set_background('spiral'), 'spiral', run_duration=self.background_test_duration)
+        self.page.run_program(set_background('spiral'), 'spiral', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
+        self.assertTrue(self.page.is_not_running())
+
+    def testBackgroundStars(self):
+        self.page.run_program(set_background('stars'), 'stars', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
+        self.assertTrue(self.page.is_not_running())
+
+    def testBackgroundStarspace(self):
+        self.page.run_program(set_background('starspace'), 'starspace', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
+        self.assertTrue(self.page.is_not_running())
+
+    def testBackgroundStrobeLights(self):
+        self.page.run_program(set_background('strobe_lights'), 'strobe_lights', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
+        self.assertTrue(self.page.is_not_running())
+
+    def testBackgroundText(self):
+        self.page.run_program(set_background('text'), 'text', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
+        self.assertTrue(self.page.is_not_running())
+
+    # Foreground tests
+
+    def testForegroundBubbles(self):
+        self.page.run_program(set_foreground('bubbles'), 'bubbles',
+                              run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
+        self.assertTrue(self.page.is_not_running())
+
+    def testForegroundConfetti(self):
+        self.page.run_program(set_foreground('confetti'), 'confetti',
+                              run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
+        self.assertTrue(self.page.is_not_running())
+
+    def testForegroundFallingPoop(self):
+        self.page.run_program(set_foreground('falling_poop'), 'falling_poop',
+                              run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
+        self.assertTrue(self.page.is_not_running())
+
+    def testForegroundFallingRainbows(self):
+        self.page.run_program(set_foreground('falling_rainbows'), 'falling_rainbows',
+                              run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
+        self.assertTrue(self.page.is_not_running())
+
+    def testForegroundHearts(self):
+        self.page.run_program(set_foreground('hearts'), 'hearts',
+                              run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
+        self.assertTrue(self.page.is_not_running())
+
+    def testForegroundMusicNotes(self):
+        self.page.run_program(set_foreground('music_notes'), 'music_notes',
+                              run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
+        self.assertTrue(self.page.is_not_running())
+
+    def testForegroundPineapples(self):
+        self.page.run_program(set_foreground('pineapples'), 'pineapples',
+                              run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
+        self.assertTrue(self.page.is_not_running())
+
+    def testForegroundPizzas(self):
+        self.page.run_program(set_foreground('pizzas'), 'pizzas',
+                              run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
         self.assertTrue(self.page.is_not_running())
 
     def testForegroundRain(self):
-        self.page.run_program(set_foreground('rain'), 'rain', run_duration=self.background_test_duration)
+        self.page.run_program(set_foreground('rain'), 'rain', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
         self.assertTrue(self.page.is_not_running())
 
     def testForegroundRainingTacos(self):
-        self.page.run_program(set_foreground('raining_tacos'), 'raining_tacos', run_duration=self.background_test_duration)
+        self.page.run_program(set_foreground('raining_tacos'), 'raining_tacos', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
+        self.assertTrue(self.page.is_not_running())
+
+    def testForegroundSnowflakes(self):
+        self.page.run_program(set_foreground('snowflakes'), 'snowflakes', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
         self.assertTrue(self.page.is_not_running())
 
     def testForegroundSpotlight(self):
-        self.page.run_program(set_foreground('spotlight'), 'spotlight', run_duration=self.background_test_duration)
+        self.page.run_program(set_foreground('spotlight'), 'spotlight', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
         self.assertTrue(self.page.is_not_running())
 
     # Very heavy case hitting all background and foreground effects
