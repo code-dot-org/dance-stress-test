@@ -1,3 +1,25 @@
+def set_background(effect_name):
+    return set_effect('Background', effect_name)
+
+
+def set_foreground(effect_name):
+    return set_effect('Foreground', effect_name)
+
+
+def set_effect(effect_type, effect_name):
+    return """
+     <xml>
+      <block type="Dancelab_whenSetup" movable="false">
+       <statement name="DO">
+        <block type="Dancelab_set{effect_type}Effect">
+         <title name="EFFECT">"{effect_name}"</title>
+        </block>
+       </statement>
+      </block>
+     </xml>
+    """.format(effect_type=effect_type, effect_name=effect_name)
+
+
 def heavy():
     return (
         'heavy',

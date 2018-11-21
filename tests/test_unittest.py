@@ -1,6 +1,6 @@
 import unittest
 from DancePage import DancePage
-from DanceXmlBuilder import heavy, heaviest
+from DanceXmlBuilder import set_background, set_foreground, heavy, heaviest
 
 
 class DanceStressTest(unittest.TestCase):
@@ -8,6 +8,7 @@ class DanceStressTest(unittest.TestCase):
     def setUp(self):
         self.page = DancePage()
         self.page.setup()
+        self.background_test_duration = 15
 
     def tearDown(self):
         self.page.teardown()
@@ -84,25 +85,73 @@ class DanceStressTest(unittest.TestCase):
     # Test cycling through many backgrounds and foregrounds to see if they
     # have memory leaks
     def testBackgrouds(self):
-        self.page.run_fixture('backgrounds.xml', run_duration=60)
+        self.page.run_fixture('backgrounds.xml', run_duration=30)
+        self.assertTrue(self.page.is_not_running())
+
+    # This next block tests all backgrounds and foregrounds individually
+    # in an effort to isolate performance problems to the particular effects
+    # causing them.
+
+    def testBackgroundColorCycle(self):
+        block_xml = set_background('color_cycle')
+        print block_xml
+        self.page.run_program(block_xml, 'color_cycle', run_duration=self.background_test_duration)
+        self.assertTrue(self.page.is_not_running())
+
+    def testBackgroundDisco(self):
+        self.page.run_program(set_background('disco'), 'disco', run_duration=self.background_test_duration)
+        self.assertTrue(self.page.is_not_running())
+
+    def testBackgroundRainbow(self):
+        self.page.run_program(set_background('rainbow'), 'rainbow', run_duration=self.background_test_duration)
+        self.assertTrue(self.page.is_not_running())
+
+    def testBackgroundDiamonds(self):
+        self.page.run_program(set_background('diamonds'), 'diamonds', run_duration=self.background_test_duration)
+        self.assertTrue(self.page.is_not_running())
+
+    def testBackgroundSplatter(self):
+        self.page.run_program(set_background('splatter'), 'splatter', run_duration=self.background_test_duration)
+        self.assertTrue(self.page.is_not_running())
+
+    def testBackgroundSwirl(self):
+        self.page.run_program(set_background('swirl'), 'swirl', run_duration=self.background_test_duration)
+        self.assertTrue(self.page.is_not_running())
+
+    def testBackgroundSnowflakes(self):
+        self.page.run_program(set_background('snowflakes'), 'snowflakes', run_duration=self.background_test_duration)
+        self.assertTrue(self.page.is_not_running())
+
+    def testBackgroundSpiral(self):
+        self.page.run_program(set_background('spiral'), 'spiral', run_duration=self.background_test_duration)
+        self.assertTrue(self.page.is_not_running())
+
+    def testForegroundRain(self):
+        self.page.run_program(set_foreground('rain'), 'rain', run_duration=self.background_test_duration)
+        self.assertTrue(self.page.is_not_running())
+
+    def testForegroundRainingTacos(self):
+        self.page.run_program(set_foreground('raining_tacos'), 'raining_tacos', run_duration=self.background_test_duration)
+        self.assertTrue(self.page.is_not_running())
+
+    def testForegroundSpotlight(self):
+        self.page.run_program(set_foreground('spotlight'), 'spotlight', run_duration=self.background_test_duration)
         self.assertTrue(self.page.is_not_running())
 
     # Very heavy case hitting all background and foreground effects
     # and all animations for one character
-    @unittest.skip
-    def testHeavy(self):
-        self.page.run_program(heavy(), 'heavy', run_duration=15)
-        self.assertTrue(self.page.is_not_running())
+    # def testHeavy(self):
+    #     self.page.run_program(heavy(), 'heavy', run_duration=15)
+    #     self.assertTrue(self.page.is_not_running())
 
     # Almost the heaviest possible case
     # Hits all background and foreground effects
     # Loads and plays every animation for every character at once
     # Constantly relayouts sprites
     # To add: Burst moves
-    @unittest.skip
-    def testHeaviest(self):
-        self.page.run_program(heaviest(), 'heaviest', run_duration=45)
-        self.assertTrue(self.page.is_not_running())
+    # def testHeaviest(self):
+    #     self.page.run_program(heaviest(), 'heaviest', run_duration=45)
+    #     self.assertTrue(self.page.is_not_running())
 
 
 # Start of script
