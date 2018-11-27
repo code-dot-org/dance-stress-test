@@ -1,6 +1,6 @@
 import unittest
 from DancePage import DancePage
-from DanceXmlBuilder import set_background, set_foreground, heavy, heaviest
+from DanceXmlBuilder import heavy, heaviest
 
 
 class DanceStressTest(unittest.TestCase):
@@ -8,8 +8,6 @@ class DanceStressTest(unittest.TestCase):
     def setUp(self):
         self.page = DancePage()
         self.page.setup()
-        self.background_test_runs = 4
-        self.background_test_duration = 15
 
     def tearDown(self):
         self.page.teardown()
@@ -93,123 +91,99 @@ class DanceStressTest(unittest.TestCase):
     # in an effort to isolate performance problems to the particular effects
     # causing them.
 
-    def testBackgroundColorCycle(self):
-        self.page.run_program(set_background('color_cycle'), 'color_cycle', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffect_bubbles(self):
+        self.page.test_effect('bubbles')
 
-    def testBackgroundColorLights(self):
-        self.page.run_program(set_background('color_lights'), 'color_lights', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffect_circles(self):
+        self.page.test_effect('circles')
 
-    def testBackgroundDisco(self):
-        self.page.run_program(set_background('disco'), 'disco', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffect_color_cycle(self):
+        self.page.test_effect('color_cycle')
 
-    def testBackgroundKaleidoscope(self):
-        self.page.run_program(set_background('kaleidoscope'), 'kaleidoscope', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffect_color_lights(self):
+        self.page.test_effect('color_lights')
 
-    def testBackgroundRainbow(self):
-        self.page.run_program(set_background('rainbow'), 'rainbow', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffect_confetti(self):
+        self.page.test_effect('confetti')
 
-    def testBackgroundDiamonds(self):
-        self.page.run_program(set_background('diamonds'), 'diamonds', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffect_diamonds(self):
+        self.page.test_effect('diamonds')
 
-    def testBackgroundSparkles(self):
-        self.page.run_program(set_background('sparkles'), 'sparkles', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffect_disco(self):
+        self.page.test_effect('disco')
 
-    def testBackgroundSplatter(self):
-        self.page.run_program(set_background('splatter'), 'splatter', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffect_disco_ball(self):
+        self.page.test_effect('disco_ball')
 
-    def testBackgroundSwirl(self):
-        self.page.run_program(set_background('swirl'), 'swirl', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffect_fireworks(self):
+        self.page.test_effect('fireworks')
 
-    def testBackgroundSnowflakes(self):
-        self.page.run_program(set_background('snowflakes'), 'snowflakes', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffect_floating_rainbows(self):
+        self.page.test_effect('floating_rainbows')
 
-    def testBackgroundSpiral(self):
-        self.page.run_program(set_background('spiral'), 'spiral', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffect_galaxy(self):
+        self.page.test_effect('galaxy')
 
-    def testBackgroundStars(self):
-        self.page.run_program(set_background('stars'), 'stars', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffect_hearts_colorful(self):
+        self.page.test_effect('hearts_colorful')
 
-    def testBackgroundStarspace(self):
-        self.page.run_program(set_background('starspace'), 'starspace', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffect_hearts_red(self):
+        self.page.test_effect('hearts_red')
 
-    def testBackgroundStrobeLights(self):
-        self.page.run_program(set_background('strobe_lights'), 'strobe_lights', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffect_kaleidoscope(self):
+        self.page.test_effect('kaleidoscope')
 
-    def testBackgroundText(self):
-        self.page.run_program(set_background('text'), 'text', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffect_lasers(self):
+        self.page.test_effect('lasers')
 
-    # Foreground tests
+    def testEffect_music_notes(self):
+        self.page.test_effect('music_notes')
 
-    def testForegroundBubbles(self):
-        self.page.run_program(set_foreground('bubbles'), 'bubbles',
-                              run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffect_pineapples(self):
+        self.page.test_effect('pineapples')
 
-    def testForegroundConfetti(self):
-        self.page.run_program(set_foreground('confetti'), 'confetti',
-                              run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffect_pizzas(self):
+        self.page.test_effect('pizzas')
 
-    def testForegroundFallingPoop(self):
-        self.page.run_program(set_foreground('falling_poop'), 'falling_poop',
-                              run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffect_rain(self):
+        self.page.test_effect('rain')
 
-    def testForegroundFallingRainbows(self):
-        self.page.run_program(set_foreground('falling_rainbows'), 'falling_rainbows',
-                              run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffectRainbow(self):
+        self.page.test_effect('rainbow')
 
-    def testForegroundHearts(self):
-        self.page.run_program(set_foreground('hearts'), 'hearts',
-                              run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffect_raining_tacos(self):
+        self.page.test_effect('raining_tacos')
 
-    def testForegroundMusicNotes(self):
-        self.page.run_program(set_foreground('music_notes'), 'music_notes',
-                              run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffect_snowflakes(self):
+        self.page.test_effect('snowflakes')
 
-    def testForegroundPineapples(self):
-        self.page.run_program(set_foreground('pineapples'), 'pineapples',
-                              run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffect_smile_face(self):
+        self.page.test_effect('smile_face')
 
-    def testForegroundPizzas(self):
-        self.page.run_program(set_foreground('pizzas'), 'pizzas',
-                              run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffect_smiling_poop(self):
+        self.page.test_effect('smiling_poop')
 
-    def testForegroundRain(self):
-        self.page.run_program(set_foreground('rain'), 'rain', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffect_sparkles(self):
+        self.page.test_effect('sparkles')
 
-    def testForegroundRainingTacos(self):
-        self.page.run_program(set_foreground('raining_tacos'), 'raining_tacos', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffect_spiral(self):
+        self.page.test_effect('spiral')
 
-    def testForegroundSnowflakes(self):
-        self.page.run_program(set_foreground('snowflakes'), 'snowflakes', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffect_splatter(self):
+        self.page.test_effect('splatter')
 
-    def testForegroundSpotlight(self):
-        self.page.run_program(set_foreground('spotlight'), 'spotlight', run_duration=self.background_test_duration, repeat_runs=self.background_test_runs)
-        self.assertTrue(self.page.is_not_running())
+    def testEffect_spotlight(self):
+        self.page.test_effect('spotlight')
+
+    def testEffect_stars(self):
+        self.page.test_effect('stars')
+
+    def testEffect_swirl(self):
+        self.page.test_effect('swirl')
+
+    def testEffect_text(self):
+        self.page.test_effect('text')
+
 
     # Very heavy case hitting all background and foreground effects
     # and all animations for one character

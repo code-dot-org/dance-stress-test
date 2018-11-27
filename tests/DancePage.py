@@ -5,6 +5,7 @@ from appium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import Select
 from time import sleep
+from DanceXmlBuilder import set_background
 
 
 # Wrapper around an appium interface to a Dance Party page for readable tests
@@ -38,6 +39,14 @@ class DancePage:
     def run_fixture(self, xml_filename, run_duration=15, repeat_runs=1):
         block_xml = load_xml(xml_filename)
         self.run_program(block_xml, xml_filename, run_duration, repeat_runs)
+
+    def test_effect(self, effect_name):
+        self.run_program(
+            set_background(effect_name),
+            effect_name,
+            run_duration=15,
+            repeat_runs=4
+        )
 
     def run_program(self, block_xml, program_name, run_duration=15, repeat_runs=1):
         print('-- Running {program_name} for {run_duration} seconds {repeat_runs} times --'.format(
