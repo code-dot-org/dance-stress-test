@@ -17,21 +17,19 @@ class DancePage:
         self.artifact_folder = None
 
     def setup(self):
-        self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', {})
+        desired_caps = {}
+        if os.environ['iOS']:
+            desired_caps = {
+                'platformName': 'iOS',
+                'platformVersion': '11.4',
+                'deviceName': 'iPhone 7',
+                'browserName': 'Safari',
+            }
+        self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
+
         self.driver.orientation = "LANDSCAPE"
         self.screenshot_folder = os.getenv('SCREENSHOT_PATH', '/tmp')
         self.artifact_folder = os.getenv('DEVICEFARM_LOG_DIR')
-
-        # TODO: Figure out local testing
-        # desired_caps = {
-        #     'platformName': 'Android',
-        #     # 'platformVersion': '8.0',
-        #     'avd': 'Nexus_4_API_22',
-        #     'deviceName': 'Android Emulator',
-        #     'browserName': 'Browser',
-        #     'automationName': 'UiAutomator2'
-        # }
-        # self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 
     def teardown(self):
         self.driver.quit()
