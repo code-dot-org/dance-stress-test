@@ -81,6 +81,13 @@ class DanceStressTest(unittest.TestCase):
         self.page.run_fixture('stealthCat.xml', run_duration=30)
         self.assertTrue(self.page.is_not_running())
 
+    # So many background changes in this one discovered in the wild,
+    # so it seemed like a good candidate for stress testing.
+    # https://studio.code.org/projects/dance/o26gc1LPkpQ9yYL1Z3UQi_vDsnqO3RqozM3jr6zswp0
+    def testSoFastClappign(self):
+        self.page.run_fixture('soFastClapping.xml', run_duration=30)
+        self.assertTrue(self.page.is_not_running())
+
     # Test cycling through many backgrounds and foregrounds to see if they
     # have memory leaks
     def testBackgrouds(self):

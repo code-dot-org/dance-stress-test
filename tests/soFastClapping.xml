@@ -1,0 +1,226 @@
+<xml>
+ <block type="Dancelab_whenSetup" deletable="false" movable="false" editable="false">
+  <statement name="DO">
+   <block type="Dancelab_setBackgroundEffectWithPalette" deletable="false" movable="false" editable="false">
+    <title name="EFFECT">"diamonds"</title>
+    <title name="PALETTE">"electronic"</title>
+    <next>
+     <block type="Dancelab_makeNewDanceSprite" deletable="false" movable="false" editable="false">
+      <title name="COSTUME">"DOG"</title>
+      <title name="NAME">dancer1</title>
+      <title name="LOCATION">{x: 300, y: 200}</title>
+      <next>
+       <block type="Dancelab_makeNewDanceSprite" deletable="false" movable="false" editable="false">
+        <title name="COSTUME">"CAT"</title>
+        <title name="NAME">dancer2</title>
+        <title name="LOCATION">{x: 200, y: 200}</title>
+        <next>
+         <block type="Dancelab_makeNewDanceSprite" deletable="false" movable="false" editable="false">
+          <title name="COSTUME">"DOG"</title>
+          <title name="NAME">dancer3</title>
+          <title name="LOCATION">{x: 100, y: 200}</title>
+         </block>
+        </next>
+       </block>
+      </next>
+     </block>
+    </next>
+   </block>
+  </statement>
+ </block>
+ <block type="Dancelab_everySeconds" deletable="false" movable="false" editable="false">
+  <title name="N">0.4</title>
+  <title name="UNIT">"seconds"</title>
+  <statement name="DO">
+   <block type="Dancelab_changeMoveLR" deletable="false" movable="false" editable="false">
+    <title name="SPRITE">dancer2</title>
+    <title name="MOVE">MOVES.ClapHigh</title>
+    <title name="DIR">-1</title>
+    <next>
+     <block type="Dancelab_setBackgroundEffectWithPalette" deletable="false" movable="false" editable="false">
+      <title name="EFFECT">"rand"</title>
+      <title name="PALETTE">"electronic"</title>
+     </block>
+    </next>
+   </block>
+  </statement>
+ </block>
+ <block type="Dancelab_atTimestamp" deletable="false" movable="false" editable="false">
+  <title name="TIMESTAMP">8</title>
+  <title name="UNIT">"measures"</title>
+  <next>
+   <block type="Dancelab_changeMoveLR" deletable="false" movable="false" editable="false">
+    <title name="SPRITE">dancer1</title>
+    <title name="MOVE">MOVES.Floss</title>
+    <title name="DIR">-1</title>
+    <next>
+     <block type="Dancelab_changeMoveLR" deletable="false" movable="false" editable="false">
+      <title name="SPRITE">dancer3</title>
+      <title name="MOVE">MOVES.Floss</title>
+      <title name="DIR">-1</title>
+     </block>
+    </next>
+   </block>
+  </next>
+ </block>
+ <block type="behavior_definition" deletable="false" movable="false" editable="false">
+  <mutation>
+   <arg name="this sprite" type="Sprite"></arg>
+   <description>Maps a sprite's x position to a given sound energy range</description>
+  </mutation>
+  <title name="NAME">mapping my x position to</title>
+  <statement name="STACK">
+   <block type="controls_if" deletable="false" movable="false" editable="false">
+    <mutation elseif="1" else="1"></mutation>
+    <value name="IF0">
+     <block type="logic_compare" deletable="false" movable="false" editable="false">
+      <title name="OP">EQ</title>
+      <value name="A">
+       <block type="parameters_get" deletable="false" movable="false" editable="false">
+        <mutation output="String"></mutation>
+        <title name="VAR">range</title>
+       </block>
+      </value>
+      <value name="B">
+       <block type="text" deletable="false" movable="false" editable="false">
+        <title name="TEXT">low</title>
+       </block>
+      </value>
+     </block>
+    </value>
+    <statement name="DO0">
+     <block type="Dancelab_setProp" deletable="false" movable="false" editable="false">
+      <title name="SPRITE">this_sprite</title>
+      <title name="PROPERTY">"x"</title>
+      <title name="VAL">0</title>
+      <value name="VAL">
+       <block type="Dancelab_getEnergy" deletable="false" movable="false" editable="false">
+        <title name="RANGE">"low"</title>
+       </block>
+      </value>
+     </block>
+    </statement>
+    <value name="IF1">
+     <block type="logic_compare" deletable="false" movable="false" editable="false">
+      <title name="OP">EQ</title>
+      <value name="A">
+       <block type="parameters_get" deletable="false" movable="false" editable="false">
+        <mutation output="String"></mutation>
+        <title name="VAR">range</title>
+       </block>
+      </value>
+      <value name="B">
+       <block type="text" deletable="false" movable="false" editable="false">
+        <title name="TEXT">med</title>
+       </block>
+      </value>
+     </block>
+    </value>
+    <statement name="DO1">
+     <block type="Dancelab_setProp" deletable="false" movable="false" editable="false">
+      <title name="SPRITE">this_sprite</title>
+      <title name="PROPERTY">"x"</title>
+      <title name="VAL">0</title>
+      <value name="VAL">
+       <block type="Dancelab_getEnergy" deletable="false" movable="false" editable="false">
+        <title name="RANGE">"mid"</title>
+       </block>
+      </value>
+     </block>
+    </statement>
+    <statement name="ELSE">
+     <block type="Dancelab_setProp" deletable="false" movable="false" editable="false">
+      <title name="SPRITE">this_sprite</title>
+      <title name="PROPERTY">"x"</title>
+      <title name="VAL">0</title>
+      <value name="VAL">
+       <block type="Dancelab_getEnergy" deletable="false" movable="false" editable="false">
+        <title name="RANGE">"high"</title>
+       </block>
+      </value>
+     </block>
+    </statement>
+   </block>
+  </statement>
+ </block>
+ <block type="behavior_definition" deletable="false" movable="false" editable="false">
+  <mutation>
+   <arg name="this sprite" type="Sprite"></arg>
+   <description>Maps a sprite's y position to a given sound energy range</description>
+  </mutation>
+  <title name="NAME">mapping my y position to</title>
+  <statement name="STACK">
+   <block type="controls_if" deletable="false" movable="false" editable="false">
+    <mutation elseif="1" else="1"></mutation>
+    <value name="IF0">
+     <block type="logic_compare" deletable="false" movable="false" editable="false">
+      <title name="OP">EQ</title>
+      <value name="A">
+       <block type="parameters_get" deletable="false" movable="false" editable="false">
+        <mutation output="String"></mutation>
+        <title name="VAR">range</title>
+       </block>
+      </value>
+      <value name="B">
+       <block type="text" deletable="false" movable="false" editable="false">
+        <title name="TEXT">low</title>
+       </block>
+      </value>
+     </block>
+    </value>
+    <statement name="DO0">
+     <block type="Dancelab_setProp" deletable="false" movable="false" editable="false">
+      <title name="SPRITE">this_sprite</title>
+      <title name="PROPERTY">"y"</title>
+      <title name="VAL">0</title>
+      <value name="VAL">
+       <block type="Dancelab_getEnergy" deletable="false" movable="false" editable="false">
+        <title name="RANGE">"low"</title>
+       </block>
+      </value>
+     </block>
+    </statement>
+    <value name="IF1">
+     <block type="logic_compare" deletable="false" movable="false" editable="false">
+      <title name="OP">EQ</title>
+      <value name="A">
+       <block type="parameters_get" deletable="false" movable="false" editable="false">
+        <mutation output="String"></mutation>
+        <title name="VAR">range</title>
+       </block>
+      </value>
+      <value name="B">
+       <block type="text" deletable="false" movable="false" editable="false">
+        <title name="TEXT">med</title>
+       </block>
+      </value>
+     </block>
+    </value>
+    <statement name="DO1">
+     <block type="Dancelab_setProp" deletable="false" movable="false" editable="false">
+      <title name="SPRITE">this_sprite</title>
+      <title name="PROPERTY">"y"</title>
+      <title name="VAL">0</title>
+      <value name="VAL">
+       <block type="Dancelab_getEnergy" deletable="false" movable="false" editable="false">
+        <title name="RANGE">"mid"</title>
+       </block>
+      </value>
+     </block>
+    </statement>
+    <statement name="ELSE">
+     <block type="Dancelab_setProp" deletable="false" movable="false" editable="false">
+      <title name="SPRITE">this_sprite</title>
+      <title name="PROPERTY">"y"</title>
+      <title name="VAL">0</title>
+      <value name="VAL">
+       <block type="Dancelab_getEnergy" deletable="false" movable="false" editable="false">
+        <title name="RANGE">"high"</title>
+       </block>
+      </value>
+     </block>
+    </statement>
+   </block>
+  </statement>
+ </block>
+</xml>
