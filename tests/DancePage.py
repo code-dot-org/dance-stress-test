@@ -5,7 +5,8 @@ from appium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import Select
 from time import sleep
-from DanceXmlBuilder import set_background
+from DanceXmlBuilder import set_background, set_foreground
+from selenium.common.exceptions import NoSuchElementException
 
 
 # Wrapper around an appium interface to a Dance Party page for readable tests
@@ -18,7 +19,7 @@ class DancePage:
 
     def setup(self):
         desired_caps = {}
-        if os.environ['iOS']:
+        if os.environ.get('DEVICEFARM_DEVICE_PLATFORM_NAME', 'unknown') == 'iOS':
             desired_caps = {
                 'platformName': 'iOS',
                 'platformVersion': '11.4',
@@ -38,9 +39,17 @@ class DancePage:
         block_xml = load_xml(xml_filename)
         self.run_program(block_xml, xml_filename, run_duration, repeat_runs)
 
-    def test_effect(self, effect_name):
+    def test_background(self, effect_name):
         self.run_program(
             set_background(effect_name),
+            effect_name,
+            run_duration=15,
+            repeat_runs=4
+        )
+
+    def test_foreground(self, effect_name):
+        self.run_program(
+            set_foreground(effect_name),
             effect_name,
             run_duration=15,
             repeat_runs=4
@@ -66,7 +75,7 @@ class DancePage:
 
     def load_free_play(self):
         # Load dance party free-play level
-        self.driver.get('{origin}s/dance/stage/1/puzzle/13?noautoplay=true'.format(origin=self.origin))
+        self.driver.get('{origin}s/dance-2019/stage/1/puzzle/10?noautoplay=true'.format(origin=self.origin))
 
         # Enter age and dismiss dialog, which causes a page reload
         self.bypass_age_dialog()
@@ -99,6 +108,14 @@ class DancePage:
         """, block_xml)
 
     def click_run(self):
+        # Wait for the page to load again
+        # Remove overlay if it's there.
+        try:
+            el = self.driver.find_element_by_xpath('//*[@id="scroll-container"]/div/div/div/div[1]/div/div/div[1]/div[2]/button')
+            el.click();
+        except NoSuchElementException:
+            pass
+
         el = self.driver.find_element_by_id('runButton')
         el.click()
 

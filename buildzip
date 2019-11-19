@@ -5,6 +5,9 @@ source bin/activate
 # Freeze requirements
 pip freeze > requirements.txt
 
+# Remove Linux artifact
+sed -i '/^pkg-resources==0.0.0/d' requirements.txt
+
 # Generate wheelhouse
 rm -rf wheelhouse
 pip wheel --wheel-dir wheelhouse -r requirements.txt
