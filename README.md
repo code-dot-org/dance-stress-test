@@ -85,6 +85,8 @@ _Based on [this setup guide](https://github.com/aws-samples/aws-device-farm-samp
    
    At "Review and start run" use a 30 minute timeout.
 
+## Note
+Due to how many tests there are, it might be easiest to run a subset of tests on each Device Farm run.
 
 ## Local testing
 
