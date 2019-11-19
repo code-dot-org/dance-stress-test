@@ -39,12 +39,11 @@
       <title name="DIR">-1</title>
       <next>
        <block type="Dancelab_setBackgroundEffect">
-        <title name="EFFECT">['disco', 'color_cycle', 'rainbow',
-         'diamonds','snowflakes','splatter','swirl','spiral'][randomInt(0,7)]
+        <title name="EFFECT">['circles', 'color_cycle', 'diamonds', 'disco_ball', 'fireworks', 'swirl', 'kaleidoscope', 'lasers', 'splatter', 'rainbow', 'snowflakes', 'text', 'galaxy', 'sparkles', 'spiral', 'disco', 'stars', 'music_wave', 'quads', 'flowers'][randomInt(0,19)]
         </title>
         <next>
          <block type="Dancelab_setForegroundEffect">
-          <title name="EFFECT">['spotlight', 'rain', 'raining_tacos'][randomInt(0,2)]</title>
+          <title name="EFFECT">['bubbles', 'confetti', 'hearts_red', 'music_notes', 'pineapples', 'pizzas', 'smiling_poop', 'rain', 'floating_rainbows', 'smile_face', 'spotlight', 'color_lights', 'raining_tacos', 'emojis'][randomInt(0,13)]</title>
          </block>
         </next>
        </block>

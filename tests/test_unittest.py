@@ -99,97 +99,121 @@ class DanceStressTest(unittest.TestCase):
     # causing them.
 
     def testEffect_bubbles(self):
-        self.page.test_effect('bubbles')
+        self.page.test_foreground('bubbles')
 
     def testEffect_circles(self):
-        self.page.test_effect('circles')
+        self.page.test_background('circles')
 
     def testEffect_color_cycle(self):
-        self.page.test_effect('color_cycle')
+        self.page.test_background('color_cycle')
 
     def testEffect_color_lights(self):
-        self.page.test_effect('color_lights')
+        self.page.test_foreground('color_lights')
 
     def testEffect_confetti(self):
-        self.page.test_effect('confetti')
+        self.page.test_foreground('confetti')
 
     def testEffect_diamonds(self):
-        self.page.test_effect('diamonds')
+        self.page.test_background('diamonds')
 
     def testEffect_disco(self):
-        self.page.test_effect('disco')
+        self.page.test_background('disco')
 
     def testEffect_disco_ball(self):
-        self.page.test_effect('disco_ball')
+        self.page.test_background('disco_ball')
+
+    def testEffect_emojis(self):
+        self.page.test_foreground('emojis')
+
+    def testEffect_exploding_stars(self):
+        self.page.test_foreground('exploding_stars')
 
     def testEffect_fireworks(self):
-        self.page.test_effect('fireworks')
+        self.page.test_background('fireworks')
 
     def testEffect_floating_rainbows(self):
-        self.page.test_effect('floating_rainbows')
+        self.page.test_foreground('floating_rainbows')
+
+    def testEffect_flowers(self):
+        self.page.test_background('flowers')
 
     def testEffect_galaxy(self):
-        self.page.test_effect('galaxy')
+        self.page.test_background('galaxy')
+
+    def testEffect_growing_stars(self):
+        self.page.test_background('growing_stars')
 
     def testEffect_hearts_colorful(self):
-        self.page.test_effect('hearts_colorful')
+        self.page.test_foreground('hearts_colorful')
 
     def testEffect_hearts_red(self):
-        self.page.test_effect('hearts_red')
+        self.page.test_foreground('hearts_red')
 
     def testEffect_kaleidoscope(self):
-        self.page.test_effect('kaleidoscope')
+        self.page.test_background('kaleidoscope')
 
     def testEffect_lasers(self):
-        self.page.test_effect('lasers')
+        self.page.test_background('lasers')
 
     def testEffect_music_notes(self):
-        self.page.test_effect('music_notes')
+        self.page.test_foreground('music_notes')
 
     def testEffect_pineapples(self):
-        self.page.test_effect('pineapples')
+        self.page.test_foreground('pineapples')
 
     def testEffect_pizzas(self):
-        self.page.test_effect('pizzas')
+        self.page.test_foreground('pizzas')
+
+    def testEffect_quads(self):
+        self.page.test_background('quads')
 
     def testEffect_rain(self):
-        self.page.test_effect('rain')
+        self.page.test_foreground('rain')
 
     def testEffectRainbow(self):
-        self.page.test_effect('rainbow')
+        self.page.test_background('rainbow')
 
     def testEffect_raining_tacos(self):
-        self.page.test_effect('raining_tacos')
+        self.page.test_foreground('raining_tacos')
+
+    def testEffect_ripples(self):
+        self.page.test_background('ripples')
+
+    def testEffect_ripples_random(self):
+        self.page.test_background('ripples_random')
 
     def testEffect_snowflakes(self):
-        self.page.test_effect('snowflakes')
+        self.page.test_background('snowflakes')
 
     def testEffect_smile_face(self):
-        self.page.test_effect('smile_face')
+        self.page.test_foreground('smile_face')
 
     def testEffect_smiling_poop(self):
-        self.page.test_effect('smiling_poop')
+        self.page.test_foreground('smiling_poop')
 
     def testEffect_sparkles(self):
-        self.page.test_effect('sparkles')
+        self.page.test_background('sparkles')
 
     def testEffect_spiral(self):
-        self.page.test_effect('spiral')
+        self.page.test_background('spiral')
 
     def testEffect_splatter(self):
-        self.page.test_effect('splatter')
+        self.page.test_background('splatter')
 
     def testEffect_spotlight(self):
-        self.page.test_effect('spotlight')
+        self.page.test_foreground('spotlight')
+
+    def testEffect_squiggles(self):
+        self.page.test_background('squiggles')
 
     def testEffect_stars(self):
-        self.page.test_effect('stars')
+        self.page.test_background('stars')
 
     def testEffect_swirl(self):
-        self.page.test_effect('swirl')
+        self.page.test_background('swirl')
 
     def testEffect_text(self):
-        self.page.test_effect('text')
+        self.page.test_background('text')
 
 
     # Very heavy case hitting all background and foreground effects
