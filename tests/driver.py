@@ -1,6 +1,8 @@
 import os
+from time import sleep
 import appium
 import selenium
+from selenium.common.exceptions import NoSuchElementException
 
 
 class DriverState:
@@ -33,3 +35,19 @@ class DriverState:
 
     def teardown(self):
         self.driver.quit()
+
+    def wait_to_see(self, find_fn):
+        element = None
+        attempt_count = 0
+        while element is None:
+            try:
+                attempt_count += 1
+                #element = self.driver.find_element_by_id(element_id)
+                element = find_fn(self.driver)
+            except NoSuchElementException:
+                if attempt_count > 30:
+                    print('Could not locate element in 30 attempts')
+                    raise
+                else:
+                    sleep(1)  # Wait one second then check again
+        return element
