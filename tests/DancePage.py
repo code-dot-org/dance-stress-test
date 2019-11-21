@@ -1,8 +1,6 @@
 from datetime import datetime
 import json
 import os
-import appium
-import selenium
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import Select
 from time import sleep
@@ -12,35 +10,14 @@ from selenium.common.exceptions import NoSuchElementException
 
 # Wrapper around an appium interface to a Dance Party page for readable tests
 class DancePage:
-    def __init__(self, origin='https://studio.code.org/', automation_framework='appium'):
-        self.origin = origin
-        self.driver = None
-        self.screenshot_folder = None
-        self.artifact_folder = None
-        self.automation_framework = automation_framework
+    def __init__(self, driver_state):
+        self.driver_state = driver_state
 
     def setup(self):
-        desired_caps = {}
-        if os.environ.get('DEVICEFARM_DEVICE_PLATFORM_NAME', 'unknown') == 'iOS':
-            desired_caps = {
-                'platformName': 'iOS',
-                'platformVersion': '11.4',
-                'deviceName': 'iPhone 7',
-                'browserName': 'Safari',
-            }
-        if self.automation_framework == 'appium':
-            self.driver = appium.webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
-            self.driver.orientation = "LANDSCAPE"
-        elif self.automation_framework == 'selenium':
-            self.driver = selenium.webdriver.Chrome()
-        else:
-            raise ValueError('Unsupported driver "{}"'.format(self.automation_framework))
-
-        self.screenshot_folder = os.getenv('SCREENSHOT_PATH', '/tmp')
-        self.artifact_folder = os.getenv('DEVICEFARM_LOG_DIR', '/tmp')
+        self.driver_state.setup()
 
     def teardown(self):
-        self.driver.quit()
+        self.driver_state.teardown()
 
     def run_fixture(self, xml_filename, run_duration=15, repeat_runs=1):
         block_xml = load_xml(xml_filename)
@@ -82,7 +59,7 @@ class DancePage:
 
     def load_free_play(self):
         # Load dance party free-play level
-        self.driver.get('{origin}s/dance-2019/stage/1/puzzle/10?noautoplay=true'.format(origin=self.origin))
+        self.driver_state.driver.get('{origin}s/dance-2019/stage/1/puzzle/10?noautoplay=true'.format(origin=self.driver_state.origin))
 
         # Enter age and dismiss dialog, which causes a page reload
         self.bypass_age_dialog()
@@ -95,19 +72,19 @@ class DancePage:
 
     def bypass_age_dialog(self):
         self.wait_to_see('uitest-age-selector')
-        selector = Select(self.driver.find_element_by_id('uitest-age-selector'))
+        selector = Select(self.driver_state.driver.find_element_by_id('uitest-age-selector'))
         selector.select_by_visible_text('10')
-        submit = self.driver.find_element_by_id('uitest-submit-age')
+        submit = self.driver_state.driver.find_element_by_id('uitest-submit-age')
         submit.click()
         sleep(3)  # Enough time for reload to start
 
     def hide_footer(self):
-        self.driver.execute_script("""
+        self.driver_state.driver.execute_script("""
             document.querySelector('#page-small-footer').style.display = 'none';
         """)
 
     def set_blocks(self, block_xml):
-        self.driver.execute_script("""
+        self.driver_state.driver.execute_script("""
             var blocksXml = arguments[0];
             Blockly.mainBlockSpace.clear();
             var arrangedBlocksXml = __TestInterface.arrangeBlockPosition(blocksXml, {});
@@ -118,20 +95,20 @@ class DancePage:
         # Wait for the page to load again
         # Remove overlay if it's there.
         try:
-            el = self.driver.find_element_by_xpath('//*[@id="scroll-container"]/div/div/div/div[1]/div/div/div[1]/div[2]/button')
+            el = self.driver_state.driver.find_element_by_xpath('//*[@id="scroll-container"]/div/div/div/div[1]/div/div/div[1]/div[2]/button')
             el.click();
         except NoSuchElementException:
             pass
 
-        el = self.driver.find_element_by_id('runButton')
+        el = self.driver_state.driver.find_element_by_id('runButton')
         el.click()
 
     def click_reset(self):
-        el = self.driver.find_element_by_id('resetButton')
+        el = self.driver_state.driver.find_element_by_id('resetButton')
         el.click()
 
     def is_not_running(self):
-        el = self.driver.find_element_by_id('runButton')
+        el = self.driver_state.driver.find_element_by_id('runButton')
         return el.is_displayed() and el.is_enabled()
 
     def wait_to_see(self, element_id):
@@ -140,7 +117,7 @@ class DancePage:
         while element is None:
             try:
                 attempt_count += 1
-                element = self.driver.find_element_by_id(element_id)
+                element = self.driver_state.driver.find_element_by_id(element_id)
             except NoSuchElementException:
                 if attempt_count > 30:
                     print('Could not locate element #{} in 30 attempts'.format(element_id))
@@ -149,7 +126,7 @@ class DancePage:
                     sleep(1)  # Wait one second then check again
 
     def screenshot(self, name):
-        self.driver.save_screenshot(self.screenshot_folder + '/' + name + '.png')
+        self.driver_state.driver.save_screenshot(self.screenshot_folder + '/' + name + '.png')
 
     def capture_timing_data(self, program_name, run_number):
         data_labels = [
@@ -160,7 +137,7 @@ class DancePage:
             'frameRateMin',
             'frameRateMax'
         ]
-        data_json = self.driver.execute_script("""
+        data_json = self.driver_state.driver.execute_script("""
             return __DanceTestInterface &&
               __DanceTestInterface.getPerformanceData &&
               JSON.stringify(__DanceTestInterface.getPerformanceData());

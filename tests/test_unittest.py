@@ -1,12 +1,12 @@
 import unittest
+from driver import DriverState
 from DancePage import DancePage
 from DanceXmlBuilder import heavy, heaviest
 
 
 class DanceStressTest(unittest.TestCase):
-
     def setUp(self):
-        self.page = DancePage()
+        self.page = DancePage(driver_state=DriverState(origin='https://studio.code.org/', framework='selenium'))
         self.page.setup()
 
     def tearDown(self):
