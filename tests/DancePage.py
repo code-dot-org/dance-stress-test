@@ -126,7 +126,7 @@ class DancePage:
                     sleep(1)  # Wait one second then check again
 
     def screenshot(self, name):
-        self.driver_state.driver.save_screenshot(self.screenshot_folder + '/' + name + '.png')
+        self.driver_state.driver.save_screenshot(self.driver_state.screenshot_folder + '/' + name + '.png')
 
     def capture_timing_data(self, program_name, run_number):
         data_labels = [
@@ -143,7 +143,7 @@ class DancePage:
               JSON.stringify(__DanceTestInterface.getPerformanceData());
         """)
         if data_json:
-            with open(os.path.join(self.artifact_folder, 'timing.csv'), 'a') as f:
+            with open(os.path.join(self.driver_state.artifact_folder, 'timing.csv'), 'a') as f:
                 data = json.loads(data_json)
                 for datum in data_labels:
                     f.write('{timestamp},,{program_name},{run_number},{datum_name},{datum_value}\n'.format(
