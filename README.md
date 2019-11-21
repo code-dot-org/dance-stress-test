@@ -49,8 +49,7 @@ _Based on [this setup guide](https://github.com/aws-samples/aws-device-farm-samp
 1. Install additional project dependencies into your workspace
 
    ```bash
-   pip install pytest
-   pip install Appium-Python-Client
+   pip install -r project_requirements.txt
    ```
    
 1. Verify you can load and list tests
