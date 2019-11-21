@@ -7,3 +7,5 @@ wheelhouse
 requirements.txt
 test_bundle.zip
 .Python
+tests/*.pyc
+tests/__pycache__
