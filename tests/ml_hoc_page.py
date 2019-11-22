@@ -67,10 +67,6 @@ class MlHocPage:
 
         # Sea Creatures pond screen
         continue_button = self.driver_state.wait_to_see(lambda d: _find_button_by_text(d, 'Continue'))
-        continue_button.click()
-
-        # Training Data video screen
-        continue_button = self.driver_state.wait_to_see(lambda d: _find_button_by_text(d, 'Continue'))
         sleep(2)
 
         # Short words screen
@@ -96,10 +92,6 @@ class MlHocPage:
         continue_button.click()
 
         # Short words pond screen
-        continue_button = self.driver_state.wait_to_see(lambda d: _find_button_by_text(d, 'Continue'))
-        continue_button.click()
-
-        # Societal Implications video screen
         continue_button = self.driver_state.wait_to_see(lambda d: _find_button_by_text(d, 'Continue'))
         sleep(2)
 
