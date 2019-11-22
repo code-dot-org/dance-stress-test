@@ -18,14 +18,9 @@ class MlHocPage:
 
     def run_program(self):
         print('Running program')
-        """
-        print('-- Running {program_name} for {run_duration} seconds {repeat_runs} times --'.format(
-            program_name=program_name, run_duration=run_duration, repeat_runs=repeat_runs
-        ))
-        """
 
         # Fish vs. Trash training screen
-        self.driver_state.driver.get(self.driver_state.origin)
+        self.driver_state.driver.get('{}/s/oceans/stage/1/puzzle/{}?guide=off'.format(self.driver_state.origin, 2))
         fish_button = self.driver_state.wait_to_see(lambda d: _find_button_by_text(d, 'Fish'))
         not_fish_button = _find_button_by_text(self.driver_state.driver, 'Not Fish')
         for i in range(0, 3):
@@ -43,15 +38,18 @@ class MlHocPage:
 
         # Fish vs. Trash pond screen
         continue_button = self.driver_state.wait_to_see(lambda d: _find_button_by_text(d, 'Continue'))
-        continue_button.click()
+        sleep(2)
 
         # Sea Creatures initial screen
+        # Request page via URL instead of clicking continue button so we can set guide=off param
+        self.driver_state.driver.get('{}/s/oceans/stage/1/puzzle/{}?guide=off'.format(self.driver_state.origin, 3))
         run_button = self.driver_state.wait_to_see(lambda d: _find_button_by_text(d, 'Run'))
         run_button.click()
         continue_button = self.driver_state.wait_to_see(lambda d: _find_button_by_text(d, 'Continue'))
-        continue_button.click()
+        sleep(2)
 
         # Sea Creatures training screen
+        self.driver_state.driver.get('{}/s/oceans/stage/1/puzzle/{}?guide=off'.format(self.driver_state.origin, 4))
         yes_button = self.driver_state.wait_to_see(lambda d: _find_button_by_text(d, 'Yes'))
         no_button = _find_button_by_text(self.driver_state.driver, 'No')
         for i in range(0, 3):
@@ -71,7 +69,12 @@ class MlHocPage:
         continue_button = self.driver_state.wait_to_see(lambda d: _find_button_by_text(d, 'Continue'))
         continue_button.click()
 
+        # Training Data video screen
+        continue_button = self.driver_state.wait_to_see(lambda d: _find_button_by_text(d, 'Continue'))
+        sleep(2)
+
         # Short words screen
+        self.driver_state.driver.get('{}/s/oceans/stage/1/puzzle/{}?guide=off'.format(self.driver_state.origin, 6))
         short_word = 'Blue'
         word_button = self.driver_state.wait_to_see(lambda d: _find_button_by_text(d, short_word))
         word_button.click()
@@ -96,7 +99,12 @@ class MlHocPage:
         continue_button = self.driver_state.wait_to_see(lambda d: _find_button_by_text(d, 'Continue'))
         continue_button.click()
 
+        # Societal Implications video screen
+        continue_button = self.driver_state.wait_to_see(lambda d: _find_button_by_text(d, 'Continue'))
+        sleep(2)
+
         # Long words screen
+        self.driver_state.driver.get('{}/s/oceans/stage/1/puzzle/{}?guide=off'.format(self.driver_state.origin, 8))
         long_word = 'Fierce'
         word_button = self.driver_state.wait_to_see(lambda d: _find_button_by_text(d, long_word))
         word_button.click()
@@ -119,26 +127,8 @@ class MlHocPage:
 
         # Long words pond screen
         finish_button = self.driver_state.wait_to_see(lambda d: _find_button_by_text(d, 'Finish'))
-        finish_button.click()
+        sleep(10)
 
-        sleep(30)
-
-        #sleep(5)
-        #print(self.driver_state.driver.find_element_by_link_text('Fish'))
-        #sleep(30)
-
-        # Several runs in a row
-
-        """
-        for i in range(repeat_runs):
-            self.click_run()
-            sleep(run_duration)
-            self.capture_timing_data(program_name, run_number=i)
-            if i == repeat_runs - 1:
-                self.screenshot(program_name)
-            self.click_reset()
-            sleep(0.5)
-        """
 
 def _find_button_by_text(webdriver, text):
     buttons = webdriver.find_elements_by_css_selector('button')
