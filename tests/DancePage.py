@@ -1,7 +1,8 @@
 from datetime import datetime
 import json
 import os
-from appium import webdriver
+import appium
+import selenium
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import Select
 from time import sleep
@@ -11,11 +12,12 @@ from selenium.common.exceptions import NoSuchElementException
 
 # Wrapper around an appium interface to a Dance Party page for readable tests
 class DancePage:
-    def __init__(self, origin='https://test-studio.code.org/'):
+    def __init__(self, origin='https://studio.code.org/', automation_framework='appium'):
         self.origin = origin
         self.driver = None
         self.screenshot_folder = None
         self.artifact_folder = None
+        self.automation_framework = automation_framework
 
     def setup(self):
         desired_caps = {}
@@ -26,11 +28,16 @@ class DancePage:
                 'deviceName': 'iPhone 7',
                 'browserName': 'Safari',
             }
-        self.driver = webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
+        if self.automation_framework == 'appium':
+            self.driver = appium.webdriver.Remote('http://127.0.0.1:4723/wd/hub', desired_caps)
+            self.driver.orientation = "LANDSCAPE"
+        elif self.automation_framework == 'selenium':
+            self.driver = selenium.webdriver.Chrome()
+        else:
+            raise ValueError('Unsupported driver "{}"'.format(self.automation_framework))
 
-        self.driver.orientation = "LANDSCAPE"
         self.screenshot_folder = os.getenv('SCREENSHOT_PATH', '/tmp')
-        self.artifact_folder = os.getenv('DEVICEFARM_LOG_DIR')
+        self.artifact_folder = os.getenv('DEVICEFARM_LOG_DIR', '/tmp')
 
     def teardown(self):
         self.driver.quit()

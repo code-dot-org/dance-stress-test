@@ -89,4 +89,15 @@ Due to how many tests there are, it might be easiest to run a subset of tests on
 
 ## Local testing
 
-Not solved yet! This is more difficult than it looks
+Local device testing using emulators - not solved yet! This is more difficult than it looks
+
+You can however test the functionality of your tests locally using Selenium and your browser:
+
+1. Install chromedriver by following these instructions: https://selenium-python.readthedocs.io/installation.html#drivers
+
+2. Pass in `automation_framework='selenium'` to the `DancePage` constructor like so:
+```python
+self.page = DancePage(automation_framework='selenium')
+```
+
+3. Run your tests. Artifacts will be created in your `/tmp` directory.
